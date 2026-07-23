@@ -89,6 +89,8 @@ h1, h2, h3 {
   background: none;
   border: none;
   color: inherit;
+  line-height: 1;
+  padding: 0;
 }
 
 .mobile-nav {
@@ -103,7 +105,14 @@ h1, h2, h3 {
 
 @media (max-width: 780px) {
   .nav-links { display: none; }
-  .nav-toggle { display: block; }
+  .nav-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    font-size: 1.9rem;
+  }
 }
 
 /* ===== Hero (accueil) ===== */
