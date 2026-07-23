@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#0a1e17"/>
+  <g stroke="#c9a13b" stroke-width="4" fill="none" stroke-linecap="round">
+    <path d="M100 320 Q120 220 90 130"/>
+    <path d="M150 320 Q170 240 200 150"/>
+    <path d="M250 320 Q260 230 230 140"/>
+    <path d="M300 320 Q310 220 280 130"/>
+  </g>
+  <g fill="#e3cd8e">
+    <circle cx="90" cy="130" r="10"/>
+    <circle cx="200" cy="150" r="12"/>
+    <circle cx="230" cy="140" r="9"/>
+    <circle cx="280" cy="130" r="11"/>
+  </g>
+  <text x="200" y="370" font-family="Georgia, serif" font-style="italic" font-size="16" fill="#e3cd8e" text-anchor="middle">Plantes d'Haïti</text>
+</svg>

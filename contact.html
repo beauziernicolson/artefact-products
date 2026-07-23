@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact — Artefact Products</title>
+<meta name="description" content="Contactez Artefact Products : formulaire, réseaux sociaux et coordonnées.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="logo">Artefact <span>Products</span></a>
+    <nav class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="produit.html">Produit</a>
+      <a href="mon-histoire.html">Mon histoire</a>
+      <a href="introspection.html">Introspection</a>
+      <a href="resilience.html">Résilience</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+  <nav class="mobile-nav">
+    <a href="index.html">Accueil</a>
+    <a href="produit.html">Produit</a>
+    <a href="mon-histoire.html">Mon histoire</a>
+    <a href="introspection.html">Introspection</a>
+    <a href="resilience.html">Résilience</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <section class="contact-section container">
+    <p class="eyebrow">Contact</p>
+    <h1>Écrivez-nous</h1>
+    <p style="color:var(--muted); max-width:520px; margin-top:14px;">
+      Un mot, une question, un besoin d'accompagnement. Nous prenons le temps de vous répondre.
+    </p>
+
+    <div class="contact-grid">
+      <form class="contact-form">
+        <div class="field">
+          <label for="name">Nom</label>
+          <input id="name" type="text" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" type="email" required>
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-solid">Envoyer</button>
+        <p class="form-success">Merci, votre message a été envoyé.</p>
+      </form>
+
+      <div class="contact-info">
+        <h2>Coordonnées</h2>
+        <ul>
+          <li><span class="dot">●</span> contact@artefact-products.com</li>
+          <li><span class="dot">●</span> +509 00 00 00 00</li>
+          <li><span class="dot">●</span> Port-au-Prince, Haïti</li>
+        </ul>
+
+        <h2 style="margin-top:28px;">Suivez-nous</h2>
+        <div class="social-row">
+          <a href="#" class="social-circle" aria-label="Instagram">IG</a>
+          <a href="#" class="social-circle" aria-label="Facebook">FB</a>
+          <a href="mailto:contact@artefact-products.com" class="social-circle" aria-label="Email">✉</a>
+        </div>
+
+        <div class="info-note">
+          Ce site propose un accompagnement bien-être à base de plantes.
+          Il ne constitue en aucun cas une promesse de guérison ni un traitement médical.
+          Parlez toujours avec votre équipe soignante.
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span class="logo">Artefact <span>Products</span></span>
+    <span class="footer-note">© 2026 — Accompagnement bien-être. Ce site ne remplace pas un avis médical.</span>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
