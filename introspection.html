@@ -41,7 +41,11 @@
       <p class="eyebrow">Carnet</p>
       <h1 class="journal-title">Le cancer nous plonge dans les méandres de notre être.</h1>
       <div class="journal-divider"></div>
-      <div class="journal-text" contenteditable="true" data-placeholder="Votre texte ici..."></div>
+      <div class="journal-text" contenteditable="true" data-placeholder="Votre texte ici..." data-slug="introspection"></div>
+      <div class="journal-save-row">
+        <button type="button" class="btn btn-solid save-story-btn">Enregistrer</button>
+        <span class="save-status"></span>
+      </div>
     </article>
   </section>
 </main>
@@ -53,6 +57,7 @@
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="js/script.js"></script>
 </body>
 </html>
