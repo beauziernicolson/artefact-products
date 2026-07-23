@@ -387,6 +387,21 @@ h1, h2, h3 {
   font-style: italic;
 }
 
+/* ===== Journal save (bouton Enregistrer) ===== */
+.journal-save-row {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.journal-save-row .btn { width: auto; padding: 12px 28px; }
+.save-status {
+  font-size: 0.85rem;
+  color: var(--emerald-soft);
+}
+.save-status.error { color: #a33; }
+
 /* ===== Contact ===== */
 .contact-section { padding: 70px 0; }
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-top: 40px; }
