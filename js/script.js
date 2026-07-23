@@ -60,4 +60,46 @@ document.addEventListener("DOMContentLoaded", () => {
       form.reset();
     });
   }
+
+  // ===== Carnets (Mon histoire / Introspection / Résilience) — sauvegarde Supabase =====
+  const journalText = document.querySelector(".journal-text[data-slug]");
+  if (journalText && window.supabase) {
+    const SUPABASE_URL = "https://ajeqdehbmxyxwyzwkvfv.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_YT34QOad86ViUvFZAzplNw_ewhMJ4Lt";
+    const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    const slug = journalText.dataset.slug;
+    const saveBtn = document.querySelector(".save-story-btn");
+    const statusEl = document.querySelector(".save-status");
+
+    // Charge le texte déjà enregistré
+    client
+      .from("story_content")
+      .select("content")
+      .eq("page_slug", slug)
+      .single()
+      .then(({ data, error }) => {
+        if (!error && data && data.content) {
+          journalText.innerText = data.content;
+        }
+      });
+
+    // Enregistre le texte quand on clique sur le bouton
+    if (saveBtn) {
+      saveBtn.addEventListener("click", async () => {
+        statusEl.textContent = "Enregistrement...";
+        statusEl.classList.remove("error");
+        const { error } = await client
+          .from("story_content")
+          .update({ content: journalText.innerText, updated_at: new Date().toISOString() })
+          .eq("page_slug", slug);
+        if (error) {
+          statusEl.textContent = "Erreur : réessayez.";
+          statusEl.classList.add("error");
+        } else {
+          statusEl.textContent = "Enregistré ✓";
+          setTimeout(() => { statusEl.textContent = ""; }, 3000);
+        }
+      });
+    }
+  }
 });
