@@ -119,16 +119,21 @@ h1, h2, h3 {
 .hero {
   position: relative;
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
-  background-color: #12362b;
+  background-color: #344b62;
 }
 
+/* Extension douce de l'image sur les côtés : elle remplit la Hero sans
+   obliger l'image principale à être recadrée ou fortement zoomée. */
 .hero-sky {
   position: absolute;
-  inset: 0;
+  inset: -24px;
+  background:
+    linear-gradient(rgba(21, 42, 60, 0.2), rgba(15, 46, 36, 0.22)),
+    url("../images/lune.jpg") center / cover no-repeat;
+  filter: blur(18px);
+  transform: scale(1.08);
+  opacity: 0.72;
 }
 
 .star {
@@ -145,86 +150,226 @@ h1, h2, h3 {
   50% { opacity: 0.8; }
 }
 
+/* L'image principale est affichée entièrement : aucun cover, aucun min-width,
+   donc la lune reste beaucoup plus petite et proche du cadrage original. */
 .hero-moon-img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  opacity: 0.9;
+  object-fit: contain;
+  object-position: center center;
+  opacity: 0.92;
   pointer-events: none;
-  animation: moonRise 3s ease-out forwards;
+  animation: moonRise 2.4s ease-out both;
 }
+
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.3), transparent, rgba(15,46,36,0.6));
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.24) 0%,
+    rgba(0, 0, 0, 0.04) 45%,
+    rgba(15, 46, 36, 0.42) 100%
+  );
   pointer-events: none;
 }
+
 @keyframes moonRise {
-  0% { transform: translateY(40vh) scale(0.9); opacity: 0; }
-  100% { transform: translateY(0) scale(1); opacity: 0.9; }
+  from { transform: translateY(5vh) scale(0.98); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 0.92; }
 }
+
 @media (prefers-reduced-motion: reduce) {
-  .hero-moon-img { animation: none; opacity: 0.9; transform: translateY(0); }
+  .hero-moon-img { animation: none; opacity: 0.92; transform: none; }
   .star { animation: none; opacity: 0.5; }
 }
 
+/* Le titre et le groupe inférieur sont positionnés séparément afin que
+   descendre le slogan ne déplace jamais Artefact Products / Haïti. */
 .hero-content {
-  position: relative;
+  position: absolute;
+  inset: 0;
   z-index: 2;
   text-align: center;
   padding: 0 24px;
+  pointer-events: none;
 }
+
 .hero-eyebrow {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.4em;
-  color: rgba(248, 244, 233, 0.7);
-  margin-bottom: 22px;
+  position: absolute;
+  top: 34%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(94vw, 1000px);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  color: rgba(248, 244, 233, 0.9);
+  text-transform: none;
 }
-.hero-title {
-  font-size: clamp(3.5rem, 13vw, 8rem);
+
+.hero-brand-name {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 7vw, 5.5rem);
   font-style: italic;
+  font-weight: 700;
+  letter-spacing: -0.02em;
   color: #fff;
-  -webkit-text-stroke: 1px rgba(0,0,0,0.35);
-  text-shadow: 0 2px 40px rgba(0,0,0,0.35);
+  -webkit-text-stroke: 0.9px rgba(0, 0, 0, 0.45);
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.35);
+  line-height: 0.95;
+  max-width: 100%;
 }
+
+.hero-brand-country {
+  font-family: var(--font-body);
+  font-size: clamp(0.85rem, 1.8vw, 1.1rem);
+  font-style: normal;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(248, 244, 233, 0.88);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.22);
+}
+
+/* Ancien titre Haïti devenu redondant avec .hero-brand-country. */
+.hero-title {
+  display: none;
+}
+
+.hero-lower-content {
+  position: absolute;
+  top: 73%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(92vw, 720px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: auto;
+  z-index: 3;
+}
+
 .hero-sub {
-  max-width: 520px;
-  margin: 30px auto 0;
+  max-width: 560px;
+  margin: 0 auto;
   font-family: var(--font-serif);
   font-style: italic;
   font-size: 1.15rem;
   line-height: 1.6;
-  color: rgba(248, 244, 233, 0.85);
+  color: rgba(248, 244, 233, 0.9);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
 }
+
 .hero-actions {
-  margin-top: 40px;
+  margin-top: 30px;
   display: flex;
-  gap: 12px;
+  gap: 14px;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
 }
 
-.btn {
+.hero-actions .btn {
+  min-width: 185px;
+  min-height: 48px;
+  padding: 13px 26px;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 13px 30px;
+  justify-content: center;
   border-radius: 999px;
-  font-size: 0.9rem;
-  font-weight: 500;
   border: 1px solid transparent;
-  transition: transform 0.15s ease, background 0.2s, color 0.2s;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  text-decoration: none;
+  white-space: nowrap;
 }
-.btn:hover { transform: translateY(-1px); }
-.btn-gold { background: var(--gold); color: var(--emerald-deep); }
-.btn-gold:hover { background: var(--gold-soft); }
-.btn-outline { border-color: rgba(248,244,233,0.4); color: var(--parchment); }
-.btn-outline:hover { background: rgba(248,244,233,0.1); }
-.btn-solid { background: var(--emerald-deep); color: var(--parchment); width: 100%; justify-content: center; }
-.btn-solid:hover { background: var(--emerald-soft); }
+
+.hero-actions .btn-gold {
+  color: var(--emerald-deep);
+  background: var(--gold);
+  border-color: var(--gold);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+}
+
+.hero-actions .btn-outline {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(4px);
+}
+
+.hero-actions .btn:hover {
+  transform: translateY(-2px);
+}
+
+.hero-actions .btn-gold:hover {
+  background: var(--gold-soft);
+  border-color: var(--gold-soft);
+  box-shadow: 0 13px 28px rgba(0, 0, 0, 0.24);
+}
+
+.hero-actions .btn-outline:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: #fff;
+}
+
+.hero-actions .btn:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.92);
+  outline-offset: 3px;
+}
+
+@media (max-width: 780px) {
+  .hero-eyebrow {
+    top: 31%;
+  }
+
+  .hero-lower-content {
+    top: 72%;
+    width: min(90vw, 560px);
+  }
+
+  .hero-sub {
+    font-size: 1.02rem;
+  }
+
+  .hero-actions {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero-moon-img {
+    object-fit: contain;
+    object-position: center center;
+  }
+
+  .hero-eyebrow {
+    top: 29%;
+  }
+
+  .hero-lower-content {
+    top: 71%;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: min(100%, 290px);
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
 
 /* ===== Values section ===== */
 .values {
