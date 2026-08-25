@@ -6,6 +6,7 @@
   --emerald-mist: #eaf3ee;
   --gold: #c9a13b;
   --gold-soft: #e3cd8e;
+  --apricot-yellow: #f3c969;
   --parchment: #f8f4e9;
   --ink: #16241d;
   --muted: #55685d;
@@ -187,6 +188,46 @@ h1, h2, h3 {
 @media (prefers-reduced-motion: reduce) {
   .hero-moon-img { animation: none; opacity: 0.92; transform: none; }
   .star { animation: none; opacity: 0.5; }
+}
+
+/* Sur laptop / desktop, les deux bandes latérales qui encadrent la photo
+   verticale de la lune passent en jaune abricot. Le bandeau supérieur
+   conserve l'ambiance nocturne pour garder le header parfaitement lisible. */
+@media (min-width: 781px) {
+  .hero {
+    background-color: var(--apricot-yellow);
+  }
+
+  /* Support sombre exactement derrière la photo centrale afin que son rendu
+     reste identique malgré la nouvelle couleur des bandes latérales. */
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 50%;
+    width: min(91.76vh, 100vw);
+    transform: translateX(-50%);
+    background: #344b62;
+    pointer-events: none;
+  }
+
+  .hero-sky {
+    inset: 0 0 auto;
+    height: 104px;
+    background:
+      linear-gradient(rgba(21, 42, 60, 0.2), rgba(15, 46, 36, 0.22)),
+      url("../images/lune.jpg") center / cover no-repeat;
+    filter: blur(14px);
+    transform: scale(1.04);
+    opacity: 0.82;
+  }
+
+  /* L'assombrissement reste uniquement au-dessus de la photo centrale :
+     le jaune abricot des côtés conserve donc sa vraie couleur. */
+  .hero-overlay {
+    inset: 0 auto 0 50%;
+    width: min(91.76vh, 100vw);
+    transform: translateX(-50%);
+  }
 }
 
 /* Le titre et le groupe inférieur sont positionnés séparément afin que
@@ -1026,4 +1067,74 @@ h1, h2, h3 {
     font-size: .62rem;
     letter-spacing: .06em;
   }
+}
+
+
+/* ===== Visuels cancer intégrés directement dans la Hero — desktop/laptop ===== */
+.hero-side-visual {
+  display: none;
+}
+
+@media (min-width: 781px) {
+  /* Chaque panneau occupe uniquement l'espace latéral laissé par la photo
+     verticale centrale de la lune. Aucun chevauchement avec le contenu central. */
+  .hero-side-visual {
+    position: absolute;
+    top: 104px;
+    bottom: 0;
+    width: calc((100% - min(91.76vh, 100vw)) / 2);
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #e89ad6;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .hero-side-visual-left { left: 0; }
+  .hero-side-visual-right { right: 0; }
+
+  .hero-side-visual img {
+    display: block;
+    max-width: 82%;
+    max-height: 72%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .hero-side-visual-left img {
+    max-width: min(54%, 220px);
+    filter: drop-shadow(0 14px 20px rgba(75,34,108,.16));
+  }
+
+  .hero-side-visual-right {
+    justify-content: flex-end;
+    padding-right: clamp(8px, 1.8vw, 28px);
+  }
+
+  .hero-side-visual-right img {
+    max-width: 94%;
+    max-height: 78%;
+    object-position: right center;
+  }
+
+  /* Le fond jaune abricot n'est plus visible dans les deux zones latérales :
+     les nouveaux panneaux roses occupent exactement ces espaces. */
+  .hero {
+    background-color: var(--apricot-yellow);
+  }
+
+  /* Garde les couches centrales au-dessus des panneaux latéraux. */
+  .hero::before { z-index: 0; }
+  .hero-moon-img { z-index: 2; }
+  .hero-overlay { z-index: 3; }
+  .hero-sky { z-index: 4; }
+  .hero-content { z-index: 5; }
+}
+
+@media (max-width: 780px) {
+  .hero-side-visual { display: none !important; }
 }
