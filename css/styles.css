@@ -460,27 +460,32 @@ h1, h2, h3 {
 .page-head p { color: var(--muted); margin-top: 14px; max-width: 560px; }
 
 /* ===== Produit ===== */
-.product-section { padding: 40px 0 60px; }
+.product-section { padding: 64px 0 76px; }
 .product-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  gap: 72px;
+  align-items: start;
 }
 @media (max-width: 860px) { .product-grid { grid-template-columns: 1fr; } }
 
+.product-gallery,
+.product-info { min-width: 0; }
+
 .product-gallery-main {
-  border-radius: var(--radius);
+  border-radius: 18px;
   overflow: hidden;
   background: var(--emerald-mist);
   aspect-ratio: 1 / 1;
+  box-shadow: 0 18px 42px -30px rgba(15,46,36,0.55);
 }
 .product-gallery-main img { width: 100%; height: 100%; object-fit: cover; }
 .thumb img { width: 100%; height: 100%; object-fit: cover; }
 .thumbs {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-top: 12px;
+  gap: 12px;
+  margin-top: 16px;
 }
 .thumb {
   border-radius: 8px;
@@ -488,28 +493,46 @@ h1, h2, h3 {
   border: 2px solid transparent;
   background: var(--emerald-mist);
   opacity: 0.65;
-  transition: opacity 0.2s, border-color 0.2s;
+  transition: opacity 0.2s, border-color 0.2s, transform 0.2s, box-shadow 0.2s;
   aspect-ratio: 1/1;
 }
+.thumb:hover { opacity: 0.9; transform: translateY(-2px); }
+.thumb:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
 .thumb.active { opacity: 1; border-color: var(--gold); }
 
-.rating { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 0.9rem; margin-top: 10px; }
+.product-info h1 { max-width: 14ch; font-size: clamp(2.35rem, 4vw, 3.5rem); line-height: 1.04; }
+.product-brand { display: block; font-family: var(--font-body); font-size: 0.76rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); line-height: 1.4; }
+.product-name { display: block; margin-top: 8px; }
+.rating { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 0.9rem; margin-top: 18px; }
 .stars { color: var(--gold); letter-spacing: 2px; }
 
-.product-desc { margin-top: 22px; line-height: 1.7; color: #3a463f; }
+.product-desc { max-width: 52ch; margin-top: 28px; line-height: 1.78; color: #33483d; }
 
 .price-box {
-  margin-top: 26px;
-  padding: 20px;
+  max-width: 52ch;
+  margin-top: 32px;
+  padding: 24px;
   border: 1px solid rgba(15,46,36,0.1);
   border-radius: var(--radius);
   background: #fff;
 }
-.price { font-family: var(--font-serif); font-size: 2rem; color: var(--emerald-deep); }
+.price { margin: 0; font-family: var(--font-serif); color: var(--emerald-deep); }
+.price-amount { display: block; font-size: clamp(1.8rem, 3vw, 2.35rem); line-height: 1.1; }
+.price-details { display: block; margin-top: 8px; color: var(--muted); font-family: var(--font-body); font-size: 0.86rem; line-height: 1.5; }
 .price-note { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
 .disclaimer { font-size: 0.72rem; color: var(--muted); text-align: center; margin-top: 12px; }
 
-.ingredients { margin-top: 32px; }
+.price-box .btn-solid {
+  width: 100%;
+  min-height: 50px;
+  margin-top: 22px;
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+.price-box .btn-solid:hover { transform: translateY(-2px); box-shadow: 0 10px 22px -14px rgba(15,46,36,0.7); }
+.price-box .btn-solid:focus-visible { outline: 3px solid var(--gold-soft); outline-offset: 3px; }
+
+.ingredients { max-width: 52ch; margin-top: 40px; }
 .ingredients ul {
   list-style: none;
   padding: 0;
@@ -521,12 +544,14 @@ h1, h2, h3 {
   color: #3a463f;
 }
 
-.reviews { background: rgba(234,243,238,0.5); padding: 70px 0; border-top: 1px solid rgba(15,46,36,0.08); }
+.reviews { background: rgba(234,243,238,0.5); padding: 64px 0; border-top: 1px solid rgba(15,46,36,0.08); }
 .review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 34px; }
 @media (max-width: 860px) { .review-grid { grid-template-columns: 1fr; } }
 .review-card { background: #fff; border-radius: var(--radius); padding: 24px; box-shadow: 0 10px 30px -20px rgba(15,46,36,0.4); }
 .review-card p { margin-top: 12px; font-size: 0.92rem; line-height: 1.6; color: #3a463f; }
 .review-name { margin-top: 16px; font-family: var(--font-serif); color: var(--emerald-deep); }
+.reviews h2 { font-size: clamp(1.8rem, 3vw, 2.35rem); }
+.reviews-empty { margin: 10px 0 0; color: var(--muted); font-family: var(--font-serif); font-size: 1.15rem; font-style: italic; }
 
 .faq { padding: 70px 0; max-width: 720px; margin: 0 auto; }
 .faq-item { border-bottom: 1px solid rgba(15,46,36,0.1); }
@@ -546,8 +571,8 @@ h1, h2, h3 {
 }
 .faq-q .chevron { transition: transform 0.2s; }
 .faq-item.open .chevron { transform: rotate(180deg); }
-.faq-a { max-height: 0; overflow: hidden; font-size: 0.92rem; color: #3a463f; line-height: 1.6; transition: max-height 0.25s ease; }
-.faq-item.open .faq-a { padding-bottom: 18px; }
+.faq-a { max-height: 0; overflow: hidden; font-size: 0.92rem; color: #3a463f; line-height: 1.7; transition: max-height 0.25s ease; }
+.faq-item.open .faq-a { max-height: 1000px; padding-bottom: 18px; }
 
 /* ===== Journal pages (mon-histoire / introspection / resilience) ===== */
 /* Fond botanique des carnets (Centrage, Caverne, Compossible).
