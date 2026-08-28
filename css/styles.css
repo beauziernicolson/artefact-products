@@ -298,12 +298,7 @@ h1, h2, h3 {
 }
 
 .hero-sub {
-  display:inline-block;
-  padding:14px 24px;
-  background:rgba(255,255,255,.12);
-  backdrop-filter:blur(12px);
-  border:1px solid rgba(255,255,255,.18);
-  border-radius:999px;
+  display:block;
   max-width: 560px;
   margin: 0 auto;
   font-family: var(--font-serif);
@@ -388,12 +383,6 @@ h1, h2, h3 {
   }
 
   .hero-sub {
-  display:inline-block;
-  padding:14px 24px;
-  background:rgba(255,255,255,.12);
-  backdrop-filter:blur(12px);
-  border:1px solid rgba(255,255,255,.18);
-  border-radius:999px;
     font-size: 1.02rem;
   }
 
