@@ -11,13 +11,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Marque le lien actif dans la nav
+  // Mark the current navigation link as active
   const current = location.pathname.split("/").pop() || "index.html";
   document.querySelectorAll(".nav-links a, .mobile-nav a").forEach((a) => {
     if (a.getAttribute("href") === current) a.classList.add("active");
   });
 
-  // Génère les étoiles du ciel (page d'accueil)
+  // Generate the sky stars on the homepage
   const sky = document.querySelector(".hero-sky");
   if (sky) {
     for (let i = 0; i < 60; i++) {
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Galerie produit
+  // Product gallery
   const thumbs = document.querySelectorAll(".thumb");
   const mainImg = document.querySelector(".product-gallery-main img");
   thumbs.forEach((thumb) => {
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // FAQ accordéon
+  // FAQ accordion
   document.querySelectorAll(".faq-item").forEach((item) => {
     const q = item.querySelector(".faq-q");
     q.addEventListener("click", () => {
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Formulaire de contact (démo — pas d'envoi réel sans backend)
+  // Contact form demo; no message is sent without a backend
   const form = document.querySelector(".contact-form");
   if (form) {
     form.addEventListener("submit", (e) => {
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ===== Carnets (Mon histoire / Introspection / Résilience) — sauvegarde Supabase =====
+  // ===== Journals (Centering / Introspection / Compossible) — Supabase storage =====
   const journalText = document.querySelector(".journal-text[data-slug]");
   if (journalText && window.supabase) {
     const SUPABASE_URL = "https://ajeqdehbmxyxwyzwkvfv.supabase.co";
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const saveBtn = document.querySelector(".save-story-btn");
     const statusEl = document.querySelector(".save-status");
 
-    // Charge le texte déjà enregistré
+    // Load previously saved text
     client
       .from("story_content")
       .select("content")
@@ -83,20 +83,20 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
 
-    // Enregistre le texte quand on clique sur le bouton
+    // Save the text when the button is clicked
     if (saveBtn) {
       saveBtn.addEventListener("click", async () => {
-        statusEl.textContent = "Enregistrement...";
+        statusEl.textContent = "Saving...";
         statusEl.classList.remove("error");
         const { error } = await client
           .from("story_content")
           .update({ content: journalText.innerText, updated_at: new Date().toISOString() })
           .eq("page_slug", slug);
         if (error) {
-          statusEl.textContent = "Erreur : réessayez.";
+          statusEl.textContent = "Error: please try again.";
           statusEl.classList.add("error");
         } else {
-          statusEl.textContent = "Enregistré ✓";
+          statusEl.textContent = "Saved ✓";
           setTimeout(() => { statusEl.textContent = ""; }, 3000);
         }
       });
